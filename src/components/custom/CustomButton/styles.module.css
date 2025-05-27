@@ -1,0 +1,19 @@
+.custom_btn {
+  padding: 0.7rem 3rem;
+  border: none;
+  outline: none;
+  z-index: 1;
+  border-radius: 0.5rem;
+  background: linear-gradient(88deg, #6dd0de -11.16% 46.95%, #2e6179 94.89%);
+  color: white;
+  width: 100%;
+}
+
+.custom_btn:hover {
+  background: linear-gradient(
+    88deg,
+    #2e6179 -11.16%,
+    #6dd0de 94.89%
+  ) !important;
+  cursor: pointer;
+}
