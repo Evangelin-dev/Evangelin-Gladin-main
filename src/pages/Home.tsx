@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 
 const Home: React.FC = () => {
+
+  useEffect(() => {
+    const datafetch = async () => {
+      try {
+        const response = await fetch('https://quiz-portfolio-api.onrender.com/api/users');
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    datafetch();
+  }, [])
   return (
 
     <>
@@ -30,9 +44,14 @@ const Home: React.FC = () => {
             </a>
           </div>
 
-          <Link to="#" className="btn">
-            Book Your Strategy Call
-          </Link>
+          <a
+            href="https://calendly.com/harry-thebot/consultation-with-thebot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn relative inline-block"
+
+          >Book Your Strategy Call</a>
+
           <br />
           <br />
           <Link to="#" className="btn1">

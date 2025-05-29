@@ -4,8 +4,7 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
-import Blog from './pages/Blog';
-import Results from './pages/Results';
+import Blog from './pages/Blog.jsx';
 import Contact from './pages/Contact';
 import './styles/style.css';
 import './components/custom/CustomButton/styles.module.css';
@@ -20,7 +19,10 @@ import DigitalPresenceSetup from './pages/servicesPage/DigitalPresence';
 import SalesFunnelLeadEngine from './pages/servicesPage/SalesFunnel';
 import ContentLeadership from './pages/servicesPage/ContentLeadership';
 import MentorshipPage from './pages/servicesPage/Mentorship';
-import CaseStudiesPage from './pages/CaseStudies';
+import CaseStudiesPage from './pages/CaseStudies.jsx';
+import BlogDetail from './pages/BlogDetail';
+import CaseStudyDetails from './pages/CasestudiesDetail';
+import QuizUsersDashboard from './pages/QuizUsersList';
 
 function App() {
 
@@ -34,7 +36,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/results" element={<Results />} />
+          <Route path="/blog/:slug" element={<BlogDetail />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/services/business-strategy" element={<BusinessStrategy />} />
           <Route path="/services/branding" element={<BrandingServices />} />
@@ -43,6 +45,8 @@ function App() {
           <Route path="/services/content-leadership" element={<ContentLeadership />} />
           <Route path="/services/mentorship" element={<MentorshipPage />} />
           <Route path="/case-studies" element={<CaseStudiesPage />} />
+          <Route path="/case-studies/:slug" element={<CaseStudyDetails />} />
+          <Route path="/quiz-dashboard" element={<QuizUsersDashboard />} />
         </Routes>
         <QuizPopup />
         <ContactSection />
