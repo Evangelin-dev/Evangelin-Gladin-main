@@ -15,7 +15,6 @@ export default function QuizPopup() {
 
   return (
     <>
-      {/* Floating Action Buttons Container */}
       <div className="fixed bottom-16 right-8 z-50 flex flex-col gap-4">
          <div className="group relative">
           <div className="fixed bottom-44 right-12 z-50 flex flex-col gap-4">
@@ -34,7 +33,6 @@ export default function QuizPopup() {
           
          </div>
 
-        {/* Growth Test Button */}
         <button
           onClick={() => setShowQuiz(true)}
           className="relative p-6 rounded-full shadow-xl bg-gradient-to-tr from-purple-500 via-pink-500 to-red-500 hover:from-pink-500 hover:to-yellow-500 transition-all duration-500 animate-float ring-2 ring-white ring-opacity-30 hover:ring-opacity-60"
@@ -44,7 +42,6 @@ export default function QuizPopup() {
         </button>
       </div>
 
-      {/* Quiz Modal */}
       {showQuiz && (
         <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
           <div className="relative w-[95%] max-w-[600px] rounded-lg shadow-lg">
