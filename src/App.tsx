@@ -47,7 +47,6 @@ function App() {
           <Route path="/case-studies" element={<CaseStudiesPage />} />
           <Route path="/case-studies/:slug" element={<CaseStudyDetails />} />
           <Route path="/quiz-dashboard" element={<QuizUsersDashboard />} />
-          /
         </Routes>
         <QuizPopup />
         <ContactSection />
