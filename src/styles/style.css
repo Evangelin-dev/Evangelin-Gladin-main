@@ -127,9 +127,25 @@ section {
 
 
 .home {
-    display: flex;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-height: 600px; 
+  position: relative;
 }
+
+
+
+.home-img {
+  position: relative;
+  width: 40%;
+  height: 460px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  overflow: visible;
+}
+
 
 .home .home-content {
     max-width: 44rem;
@@ -230,9 +246,7 @@ section {
     color: var(--main-color);
     border-color: var(--main-color);
 }
-.btn4 {
-    
-    display: inline-flex;
+.btn4 {    
     padding: 1.2rem 2.8rem;
     background: linear-gradient(88deg, #ffa37b -11.16%, #fa6bbe 46.95%, #732bf7 94.89%);
     border-radius: .6rem;
@@ -241,7 +255,6 @@ section {
     color: var(--white-color);
     letter-spacing: .1rem;
     font-weight: 600;
-    
     transition: .5s ease;
     align-content: center;
     right: 42%;
@@ -400,16 +413,7 @@ section {
     
 }
 
-.home-img img {
-    position: absolute;
-    bottom: 0px;
-    right: -30px;
-    pointer-events: none;
-    width: 600px;
-    height: 600px;
-    
-    
-}
+
 
 span {
     color: var(--main-color);
@@ -484,7 +488,7 @@ span {
 }
 
 .services-box h3 {
-    font-size: 2.6rem;
+    font-size: 2.5rem;
     transition: .5s ease;
 }
 
@@ -612,7 +616,8 @@ span {
 }
 
 .contact form .input-box input {
-    width: 49%;
+    width: 100%;
+    height: 50px;
 }
 
 .contact form textarea {

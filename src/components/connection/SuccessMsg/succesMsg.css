@@ -1,0 +1,80 @@
+.success-modal-content {
+  position: relative;
+  background-color: #6b21a8;
+  color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 100%;
+  box-shadow: 0 0 20px white;
+  text-align: center;
+  overflow: hidden;
+}
+
+.bubble-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.modal-body {
+  position: relative;
+  z-index: 10;
+}
+
+.icon {
+  padding: 1rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.message {
+  padding: 1rem 0;
+  font-size: 1.125rem;
+}
+
+.confirm-button {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.confirm-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.moving-circle {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: floatMove 5s ease-in-out infinite;
+}
+
+@keyframes floatMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(20px, -15px);
+  }
+  50% {
+    transform: translate(-15px, 20px);
+  }
+  75% {
+    transform: translate(15px, 15px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
