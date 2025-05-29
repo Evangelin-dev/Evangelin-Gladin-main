@@ -20,7 +20,9 @@ const BlogListing = () => {
         }
 
         const data = await res.json();
-        setBlogs(data.results || []);
+        const sortedBlogs = (data.results || []).sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        setBlogs(sortedBlogs);
       } catch (err) {
         console.error("Failed to fetch blogs", err);
         setError(err.message);

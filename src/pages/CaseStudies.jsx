@@ -20,7 +20,9 @@ const CaseStudies = () => {
         }
 
         const data = await res.json();
-        setCaseStudy(data.results || []);
+        const sortedCaseStudies = (data.results || []).sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        setCaseStudy(sortedCaseStudies);
       } catch (err) {
         console.error("Failed to fetch blogs", err);
         setError(err.message);
