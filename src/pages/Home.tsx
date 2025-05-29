@@ -1,15 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import FooterTest from '../components/Footer';
-import ContactSection from '../components/Connect';
 
 
 const Home: React.FC = () => {
   return (
 
     <>
-      <section className="home" id="home">
-        <div className="home-content">
+      <section className="home flex flex-col items-center sm:flex-row" id="home">
+        <div className="home-content text-center flex flex-col lg:text-left max-w-2xl mx-auto lg:mx-0 mt-24 ">
           <h3>Hello, I am</h3>
           <h1>Evangelin Gladin</h1>
           <h2>"Helping Entrepreneurs Scale Smarter — Not Harder."</h2>
@@ -17,17 +15,17 @@ const Home: React.FC = () => {
             <br /> Strategic support for founders who need clarity, momentum, and scalable marketing systems.
           </p>
 
-          <div className="social-media">
-            <a href="https://www.facebook.com/evangelinglen">
+          <div className="social-media mt-[-10px] sm:mt-0">
+            <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/evangelinglen">
               <i className="bx bxl-facebook"></i>
             </a>
-            <a href="https://x.com/evangelingladin">
+            <a target="_blank" rel="noopener noreferrer" href="https://x.com/evangelingladin">
               <i className="bx bxl-twitter"></i>
             </a>
-            <a href="https://www.instagram.com/evangelingladin/">
+            <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/evangelingladin/">
               <i className="bx bxl-instagram-alt"></i>
             </a>
-            <a href="https://www.linkedin.com/in/evangelin-gladin-profile/">
+            <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/evangelin-gladin-profile/">
               <i className="bx bxl-linkedin"></i>
             </a>
           </div>
@@ -60,12 +58,14 @@ const Home: React.FC = () => {
           </div>
           <div className="overlay"></div>
         </div>
-        <div className="home-img">
-          <img src="/images/Pic.png" alt="Profile" />
+        <div className="home-img ">
+          <img
+            src="/images/Pic.png"
+            alt="Profile"
+            className="max-h-[500px] w-full object-contain"
+          />
         </div>
       </section>
-      <ContactSection />
-      <FooterTest />
     </>
   );
 };

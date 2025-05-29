@@ -1,8 +1,28 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Blog: React.FC = () => {
+  
+  const [blogs, setBlogs] = useState([]);
+
+  const API_URL = `${process.env.REACT_APP_BASE_API}/api/blogs/?access_key=${process.env.REACT_APP_CLIENT_ID}`;
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+        setBlogs(data);
+      } catch (err) {
+        console.error("Failed to fetch blogs", err);
+      }
+    };
+
+    fetchBlogs();
+  }, [API_URL]);
+
+  console.log(blogs)
   return (
     <section className="portfolio" id="portfolio">
       <h2 className="heading">
