@@ -73,12 +73,12 @@ const BlogListing = () => {
             <article key={blog.slug} className="w-full bg-gray-900 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:bg-gray-800">
               <div className="flex flex-col md:flex-row">
                 <div className="md:w-1/3">
-                  <div className="h-64 md:h-full p-6 flex items-center justify-center">
+                  <div className="h-64 md:h-full flex items-center justify-center">
                     {blog.image ? (
                       <img
                         src={blog.image}
                         alt={blog.title}
-                        className="w-full h-64 object-cover rounded-lg"
+                        className="w-full h-full object-cover rounded-lg"
                         onError={(e) => {
                           e.target.style.display = 'none';
                           e.target.nextSibling.style.display = 'flex';
@@ -95,7 +95,7 @@ const BlogListing = () => {
                 </div>
 
                 <div className="md:w-2/3 p-8">
-                  <div className="flex items-center space-x-4 text-sm text-gray-400 mb-4">
+                  <div className="flex items-center space-x-4 text-lg text-gray-400 mb-4">
                     <div className="flex items-center space-x-1">
                       <Calendar size={16} />
                       <span>{formatDate(blog.date)}</span>
@@ -106,17 +106,17 @@ const BlogListing = () => {
                     </div>
                   </div>
 
-                  <h3 className="text-2xl font-bold text-white mb-4 leading-tight">
+                  <h3 className="text-4xl font-bold text-white mb-4 leading-tight">
                     {blog.title}
                   </h3>
 
-                  <p className="text-gray-300 mb-6 leading-relaxed">
+                  <p className="text-gray-300 mb-8 text-3xl leading-relaxed text-justify">
                     {blog.description}
                   </p>
 
                   <Link
                     to={`/blog/${blog.slug}`}
-                    className="inline-flex items-center px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg transition-colors duration-200"
+                    className="inline-flex items-center px-6 py-6 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg transition-colors duration-200"
                   >
                     Read more
                     <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

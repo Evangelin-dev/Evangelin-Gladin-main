@@ -73,12 +73,12 @@ const CaseStudies = () => {
             <article key={caseStudy.slug} className="w-full bg-gray-900 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:bg-gray-800">
               <div className="flex flex-col md:flex-row">
                 <div className="md:w-1/3">
-                  <div className="h-64 md:h-full p-6 flex items-center justify-center">
+                  <div className="h-64 md:h-full flex items-center justify-center">
                     {caseStudy.image ? (
                       <img
                         src={caseStudy.image}
                         alt={caseStudy.title}
-                        className="w-full h-64 object-cover rounded-lg"
+                        className="w-full h-full object-cover rounded-lg"
                         onError={(e) => {
                           e.target.style.display = 'none';
                           e.target.nextSibling.style.display = 'flex';
@@ -95,7 +95,7 @@ const CaseStudies = () => {
                 </div>
 
                 <div className="md:w-2/3 p-8">
-                  <div className="flex items-center space-x-4 text-sm text-gray-400 mb-4">
+                  <div className="flex items-center space-x-4 text-lg text-gray-400 mb-4">
                     <div className="flex items-center space-x-1">
                       <Calendar size={16} />
                       <span>{formatDate(caseStudy.date)}</span>
@@ -106,11 +106,11 @@ const CaseStudies = () => {
                     </div>
                   </div>
 
-                  <h3 className="text-2xl font-bold text-white mb-4 leading-tight">
+                  <h3 className="text-4xl font-bold text-white mb-4 leading-tight">
                     {caseStudy.title}
                   </h3>
 
-                  <p className="text-gray-300 mb-6 leading-relaxed">
+                  <p className="text-gray-300 mb-6 text-3xl leading-relaxed">
                     {caseStudy.description}
                   </p>
 
