@@ -66,9 +66,6 @@ const QuizUsersDashboard = () => {
           <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-4">
             Quiz Dashboard
           </h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Real-time analytics of quiz participants with stunning visual insights
-          </p>
         </div>
 
         <div className="mb-12">
