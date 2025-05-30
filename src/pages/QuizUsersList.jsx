@@ -67,7 +67,6 @@ const QuizUsersDashboard = () => {
             Quiz Dashboard
           </h1>
         </div>
-
         <div className="mb-12">
           <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-lg border border-blue-500/30 rounded-3xl p-8 shadow-2xl">
             <div className="flex items-center justify-between flex-wrap gap-6">
