@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Users } from "lucide-react"; // Add lucide-react if not installed
+import { Users } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function QuizPopup() {
