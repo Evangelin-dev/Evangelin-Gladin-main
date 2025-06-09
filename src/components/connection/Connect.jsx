@@ -2,19 +2,21 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import SuccessMessage from "./SuccessMsg";
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 export default function ContactSection() {
     const countries = [
-        { code: "IN" },
-        { code: "US" },
-        { code: "GB" },
-        { code: "CA" },
-        { code: "AU" },
-        { code: "DE" },
-        { code: "FR" },
-        { code: "JP" },
-        { code: "CN" },
-        { code: "BR" },
+        { code: "IN", dialCode: "+91" },
+        { code: "US", dialCode: "+1" },
+        { code: "GB", dialCode: "+44" },
+        { code: "CA", dialCode: "+1" },
+        { code: "AU", dialCode: "+61" },
+        { code: "DE", dialCode: "+49" },
+        { code: "FR", dialCode: "+33" },
+        { code: "JP", dialCode: "+81" },
+        { code: "CN", dialCode: "+86" },
+        { code: "BR", dialCode: "+55" },
     ];
 
     const interests = [
@@ -34,6 +36,8 @@ export default function ContactSection() {
     const [selectedCountry, setSelectedCountry] = useState(countries[0]);
     const [showDropdown, setShowDropdown] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const formik = useFormik({
         initialValues: {
             firstName: "",
@@ -53,15 +57,53 @@ export default function ContactSection() {
             email: Yup.string().email("Invalid email").required("Email is required"),
             phone: Yup.string()
                 .matches(/^[0-9]+$/, "Only numbers allowed")
-                .matches(/^\d{10}$/, 'Phone number must be exactly 10 digits')
                 .required("Phone number is required"),
             message: Yup.string().required("Message is required"),
             interest: Yup.string().required("Interest is required"),
         }),
-        onSubmit: (values, { resetForm }) => {
-            console.log(values);
-            setShowSuccess(true);
-            resetForm();
+        onSubmit: async (values, { resetForm, setSubmitting }) => {
+            setIsSubmitting(true);
+
+            try {
+                const payload = {
+                    location: selectedCountry.code,
+                    interested_in: values.interest,
+                    access_key: process.env.REACT_APP_ACCESS_KEY,
+                    first_name: values.firstName,
+                    last_name: values.lastName,
+                    email: values.email,
+                    phone: `${selectedCountry.dialCode}${values.phone}`,
+                    note: values.message
+                };
+
+                console.log('Payload:', payload);
+
+                const response = await fetch(`${process.env.REACT_APP_CONTACT_API}/?access_key=${process.env.REACT_APP_ACCESS_KEY}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log('Success:', result);
+                    setShowSuccess(true);
+                    resetForm();
+                    setSelectedCountry(countries[0]);
+                } else {
+                    const errorData = await response.json();
+                    console.error('Error:', errorData);
+                    alert('Failed to submit form. Please try again.');
+                }
+            } catch (error) {
+                console.error('Network error:', error);
+                alert('Network error. Please check your connection and try again.');
+            } finally {
+                setIsSubmitting(false);
+                setSubmitting(false);
+            }
         },
     });
 
@@ -148,51 +190,22 @@ export default function ContactSection() {
                                 <p className="text-red-400 text-sm">{formik.errors.email}</p>
                             )}
 
-                            <div className="flex items-center border-b-2 bg-[#d3d3d363] border-black relative">
-                                <div className="relative mr-3">
-                                    <button
-                                        type="button"
-                                        className="outline-none"
-                                        onClick={() => setShowDropdown((prev) => !prev)}
-                                    >
-                                        <img
-                                            src={`https://flagcdn.com/w40/${selectedCountry.code.toLowerCase()}.png`}
-                                            alt={selectedCountry.code}
-                                            className="w-9 h-9 mx-2 mt-1"
-                                        />
-                                    </button>
-
-                                    {showDropdown && (
-                                        <div className="absolute left-0 mt-2 bg-[#252323fb] border rounded shadow-md z-10 max-h-60 overflow-y-auto w-44">
-                                            {countries.map((country) => (
-                                                <div
-                                                    key={country.code}
-                                                    onClick={() => handleSelect(country.code)}
-                                                    className="px-4 py-2 cursor-pointer hover:bg-gray-300 text-sm flex items-center gap-2"
-                                                >
-                                                    <img
-                                                        src={`https://flagcdn.com/w40/${country.code.toLowerCase()}.png`}
-                                                        alt={country.code}
-                                                        className="w-6 h-6"
-                                                    />
-                                                    <span className="text-xl">{country.code}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-
-                                <input
-                                    type="tel"
-                                    name="phone"
-                                    placeholder="Phone Number"
-                                    inputMode="numeric"
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.phone}
-                                    className="w-full rounded-md ps-2 text-xl h-10 outline-none bg-[#d3d3d363]"
-                                />
-                            </div>
+                            <PhoneInput
+                                country={'in'}
+                                
+                                value={formik.values.phone}
+                                onChange={(phone, data) => {
+                                    formik.setFieldValue('phone', phone);
+                                    setSelectedCountry({ code: data.countryCode.toUpperCase(), dialCode: `+${data.dialCode}` });
+                                }}
+                                inputClass="w-full text-xl py-3 ps-2 text-black border-none outline-none"
+                                buttonClass="bg-[black] border-none text-black border-b-2 border-black"
+                                containerClass="border-b-2 border-black text-black"
+                                inputProps={{
+                                    name: 'phone',
+                                    onBlur: formik.handleBlur,
+                                }}
+                            />
                             {formik.touched.phone && formik.errors.phone && (
                                 <p className="text-red-400 text-sm">{formik.errors.phone}</p>
                             )}
@@ -230,9 +243,10 @@ export default function ContactSection() {
 
                             <button
                                 type="submit"
-                                className="w-full ps-2 text-xl py-4 mt-6 bg-gradient-to-r from-pink-500 to-purple-600 hover:to-pink-500 hover:from-purple-600 text-white font-semibold rounded-xl"
+                                disabled={isSubmitting}
+                                className="w-full ps-2 text-xl py-4 mt-6 bg-gradient-to-r from-pink-500 to-purple-600 hover:to-pink-500 hover:from-purple-600 text-white font-semibold rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                Book Demo
+                                {isSubmitting ? 'Submitting...' : 'Book Demo'}
                             </button>
                         </form>
                     </div>
