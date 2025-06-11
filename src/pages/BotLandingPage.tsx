@@ -11,6 +11,7 @@ import PopupApplicationForm from "../botlanding/components/ApplicationForm";
 import LiveNotifications from "../botlanding/components/NotificationPopup";
 import IndustriesWeServe from "../botlanding/components/Indrustries";
 import AnimatedClientsShowcase from "../botlanding/components/OurClients";
+import { BackgroundBeams } from "../botlanding/components/ui/background-beams";
 
 function BotLandingPage() {
     return (
@@ -113,6 +114,9 @@ function BotLandingPage() {
             `}</style>
             
             <div className="bot-landing-container">
+                        <div className="fixed inset-0 -z-10 pointer-events-none">
+          <BackgroundBeams />
+        </div>
                 <Navbar />
                 <LogoCloudSection />
                 <IsThisYou />
