@@ -23,39 +23,45 @@ import CaseStudiesPage from './pages/CaseStudies.jsx';
 import BlogDetail from './pages/BlogDetail';
 import CaseStudyDetails from './pages/CasestudiesDetail';
 import QuizUsersDashboard from './pages/QuizUsersList';
+import BotLandingPage from './pages/BotLandingPage';
 
 function App() {
-
   return (
     <Router>
       <div className="App">
         <ScrollToTop />
-        <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogDetail />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/services/business-strategy" element={<BusinessStrategy />} />
-          <Route path="/services/branding" element={<BrandingServices />} />
-          <Route path="/services/digital-presence" element={<DigitalPresenceSetup />} />
-          <Route path="/services/sales-funnel" element={<SalesFunnelLeadEngine />} />
-          <Route path="/services/content-leadership" element={<ContentLeadership />} />
-          <Route path="/services/mentorship" element={<MentorshipPage />} />
-          <Route path="/case-studies" element={<CaseStudiesPage />} />
-          <Route path="/case-studies/:slug" element={<CaseStudyDetails />} />
-          <Route path="/quiz-dashboard" element={<QuizUsersDashboard />} />
+          <Route path="/roadmapto1cr" element={<BotLandingPage />} />
+          
+          <Route path="/*" element={
+            <>
+              <Header />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:slug" element={<BlogDetail />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/services/business-strategy" element={<BusinessStrategy />} />
+                <Route path="/services/branding" element={<BrandingServices />} />
+                <Route path="/services/digital-presence" element={<DigitalPresenceSetup />} />
+                <Route path="/services/sales-funnel" element={<SalesFunnelLeadEngine />} />
+                <Route path="/services/content-leadership" element={<ContentLeadership />} />
+                <Route path="/services/mentorship" element={<MentorshipPage />} />
+                <Route path="/case-studies" element={<CaseStudiesPage />} />
+                <Route path="/case-studies/:slug" element={<CaseStudyDetails />} />
+                <Route path="/quiz-dashboard" element={<QuizUsersDashboard />} />
+              </Routes>
+              <QuizPopup />
+              <ContactSection />
+              <FooterTest />
+            </>
+          } />
         </Routes>
-        <QuizPopup />
-        <ContactSection />
-        <FooterTest />
       </div>
-
     </Router>
-
   );
 }
 
-export default App; 
+export default App;

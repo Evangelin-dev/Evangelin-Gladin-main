@@ -95,7 +95,7 @@ export default function ContactSection() {
                 } else {
                     const errorData = await response.json();
                     console.error('Error:', errorData);
-                    alert('Failed to submit form. Please try again.');
+                    alert(errorData.msg);
                 }
             } catch (error) {
                 console.error('Network error:', error);
